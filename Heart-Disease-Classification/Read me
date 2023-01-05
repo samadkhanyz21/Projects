@@ -1,0 +1,6 @@
+The notebook explore various Python-Based machine learning & data science libraries in an attempt to build a machine learning model capable of predicting either 
+someone has heart disease or not depending upon there medical status of the patient.
+
+The original dataset is on the UCI Machine Learning repository [https://archive.ics.uci.edu/ml/datasets/heart+Disease].
+
+The alternative version of the dataset is also available on kaggle [https://www.kaggle.com/datasets/redwankarimsony/heart-disease-data].
