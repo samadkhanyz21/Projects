@@ -1,0 +1,55 @@
+# list of all containers you intended to be used
+services:
+
+    # Run tweet_collector Container
+    tweet_collector:                       
+        build: tweet_collector/
+        # image gets built from Dockerfile   
+        volumes: 
+        # creating local dir into the "/app"-dir in this container
+        - ./tweet_collector/:/app/
+        depends_on:
+        # DB into which tweets are dumped                
+        - mongodb
+
+    # Mongodb Container
+    mongodb:                           
+        image: mongo
+        # image downloaded from Docker Hub                   
+        ports:
+        # maps port 27017 of this container (RS) to port 27017 of localhost (LS)
+        - 27017:27017             
+
+    # Run etl_job Container 
+    etl_job:                         
+        build: etl_job/
+        # image gets built from Dockerfile
+        volumes:
+         # creating local dir into the "/app"-dir in this container
+        - ./etl_job/:/app/      
+        depends_on:
+        # DB from which we extract tweets
+        - mongodb
+        # DB into which we load transformed tweets                   
+        - postgresdb
+    
+    # Postgresdb Container 
+    postgresdb:                    
+        image: postgres
+        # image downloaded from Docker Hub               
+        ports:
+        # maps port 5432 of this container to port 5555 of localhost
+        - 5555:5432         
+        environment:
+        # sets environment variables                 
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=1234
+        - POSTGRES_DB=tweets
+    
+    # slack_bot Container
+    slackbot:                       
+       build: slackbot/
+       volumes:
+       - ./slackbot/:/app/
+       depends_on:
+       - postgresdb
