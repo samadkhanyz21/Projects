@@ -1,0 +1,6 @@
+python==3.8
+tensorflow
+matplotlib
+sckit-learn
+mediapipe
+opencv-python
