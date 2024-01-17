@@ -1,0 +1,6 @@
+train: /home/samadkhanyz/Documents/projects/Drowsiness Detection/data/train/images
+val: /home/samadkhanyz/Documents/projects/Drowsiness Detection/data/valid/images
+test: /home/samadkhanyz/Documents/projects/Drowsiness Detection/data/test/images
+
+nc: 4
+names: ['closed_eye', 'closed_mouth', 'open_eye', 'open_mouth']
